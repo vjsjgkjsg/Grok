@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Klin - Заработай Реальные Деньги!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-screen="tap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Кликер</span>
+        </button>
+        <button class="nav-btn" data-screen="shop">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Магазин</span>
+        </button>
+        <button class="nav-btn" data-screen="quests">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>Задания</span>
+        </button>
+        <button class="nav-btn" data-screen="wallet">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            <span>Кошелёк</span>
+        </button>
+        <button class="nav-btn" data-screen="referrals">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Друзья</span>
+        </button>
+    </nav>
+
+    <!-- Экран 1: Кликер -->
+    <div class="screen active" id="tap-screen">
+        <div class="header">
+            <div class="logo">
+                <h1>💎 NEO KLIN</h1>
+            </div>
+            <div class="user-stats">
+                <div class="level-badge">
+                    <span class="level-number" id="userLevel">1</span>
+                    <span class="level-text">ур.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="balance-section">
+            <div class="balance-label">Ваш баланс</div>
+            <div class="balance-amount" id="balance">0</div>
+            <div class="balance-currency">Neo Klin</div>
+        </div>
+
+        <div class="energy-section">
+            <div class="energy-bar-container">
+                <div class="energy-bar" id="energyBar"></div>
+            </div>
+            <div class="energy-text">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <span id="energyText">1000/1000</span>
+            </div>
+        </div>
+
+        <div class="tap-area">
+            <button class="coin-btn" id="coinBtn">
+                <div class="coin-inner">
+                    <span class="coin-text">NK</span>
+                    <div class="coin-shine"></div>
+                </div>
+            </button>
+            <div class="tap-info">
+                <div class="tap-power">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span>+<span id="tapPower">1</span> за клик</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-mini">
+            <div class="stat-item">
+                <div class="stat-value" id="totalClicks">0</div>
+                <div class="stat-label">Всего кликов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="autoIncome">0</div>
+                <div class="stat-label">В час (авто)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран 2: Магазин -->
+    <div class="screen" id="shop-screen">
+        <div class="screen-header">
+            <h2>💎 Магазин улучшений</h2>
+            <p class="screen-subtitle">Увеличь свой доход!</p>
+        </div>
+
+        <div class="upgrades-container" id="upgradesContainer">
+            <!-- Карточки улучшений генерируются JS -->
+        </div>
+    </div>
+
+    <!-- Экран 3: Задания -->
+    <div class="screen" id="quests-screen">
+        <div class="screen-header">
+            <h2>🎯 Задания</h2>
+            <p class="screen-subtitle">Выполняй и получай бонусы!</p>
+        </div>
+
+        <!-- Ежедневные награды -->
+        <div class="daily-rewards">
+            <h3 class="section-title">📅 Ежедневный вход</h3>
+            <div class="daily-grid" id="dailyGrid">
+                <!-- Генерируется JS -->
+            </div>
+        </div>
+
+        <!-- Достижения -->
+        <div class="achievements-section">
+            <h3 class="section-title">🏆 Достижения</h3>
+            <div class="achievements-list" id="achievementsList">
+                <!-- Генерируется JS -->
+            </div>
+        </div>
+
+        <!-- Социальные задания -->
+        <div class="social-quests">
+            <h3 class="section-title">📱 Социальные задания</h3>
+            <div class="social-list" id="socialList">
+                <!-- Генерируется JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран 4: Кошелёк -->
+    <div class="screen" id="wallet-screen">
+        <div class="screen-header">
+            <h2>💰 Вывод средств</h2>
+            <p class="screen-subtitle">Забирай заработанное!</p>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="withdraw-balance">
+                <div class="withdraw-label">Доступно к выводу</div>
+                <div class="withdraw-amount" id="withdrawBalance">0 ₸</div>
+            </div>
+
+            <div class="withdraw-progress">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="withdrawProgress"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="withdrawCurrent">0</span> из <span id="withdrawMin">5000</span> ₸
+                </div>
+            </div>
+
+            <div class="withdraw-form">
+                <div class="form-group">
+                    <label>Способ вывода</label>
+                    <select id="withdrawMethod">
+                        <option value="kaspi">Kaspi Gold</option>
+                        <option value="phone">Номер телефона</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Номер для вывода</label>
+                    <input type="text" id="withdrawNumber" placeholder="+7 (___) ___-__-__">
+                </div>
+
+                <div class="form-group">
+                    <label>Сумма вывода (₸)</label>
+                    <input type="number" id="withdrawAmount" placeholder="5000" min="5000">
+                </div>
+
+                <button class="btn-primary" id="withdrawBtn" disabled>
+                    Подать заявку на вывод
+                </button>
+
+                <div class="withdraw-info">
+                    ℹ️ Минимальная сумма вывода - 5000 ₸<br>
+                    ⏰ Обработка заявок - до 24 часов<br>
+                    💵 Курс: 1000 NK = 1000 ₸
+                </div>
+            </div>
+
+            <div class="withdraw-history">
+                <h3 class="section-title">📋 История выплат</h3>
+                <div class="history-list" id="historyList">
+                    <div class="empty-state">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                        <p>Пока нет заявок на вывод</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран 5: Рефералы -->
+    <div class="screen" id="referrals-screen">
+        <div class="screen-header">
+            <h2>👥 Пригласи друзей</h2>
+            <p class="screen-subtitle">Получай 10% от их кликов!</p>
+        </div>
+
+        <div class="referral-stats">
+            <div class="ref-stat-card">
+                <div class="ref-stat-value" id="refCount">0</div>
+                <div class="ref-stat-label">Друзей</div>
+            </div>
+            <div class="ref-stat-card">
+                <div class="ref-stat-value" id="refEarnings">0</div>
+                <div class="ref-stat-label">Заработано</div>
+            </div>
+        </div>
+
+        <div class="referral-link-section">
+            <div class="referral-link">
+                <input type="text" id="refLink" value="https://neoklin.kz/ref/12345" readonly>
+                <button class="btn-copy" id="copyRefBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="btn-share" id="shareBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3"/>
+                    <circle cx="6" cy="12" r="3"/>
+                    <circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                Поделиться ссылкой
+            </button>
+        </div>
+
+        <div class="referral-list">
+            <h3 class="section-title">Твои рефералы</h3>
+            <div class="ref-list-container" id="refListContainer">
+                <div class="empty-state">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <p>Пригласи первого друга!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно достижения -->
+    <div class="modal" id="achievementModal">
+        <div class="modal-content achievement-content">
+            <div class="achievement-icon">🎉</div>
+            <h3 class="achievement-title" id="achievementTitle">Достижение разблокировано!</h3>
+            <p class="achievement-desc" id="achievementDesc"></p>
+            <div class="achievement-reward" id="achievementReward"></div>
+            <button class="btn-primary" onclick="closeModal('achievementModal')">Забрать!</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно уведомления -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Подключение скриптов -->
+    <script src="config.js"></script>
+    <script src="storage.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

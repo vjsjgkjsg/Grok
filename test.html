@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест загрузки - Neo Klin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-block {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Тест загрузки Neo Klin</h1>
+    
+    <div class="test-block">
+        <h2>1. Проверка CSS</h2>
+        <p id="cssTest" class="info">Проверка...</p>
+    </div>
+    
+    <div class="test-block">
+        <h2>2. Проверка JavaScript файлов</h2>
+        <p id="configTest" class="info">config.js: Проверка...</p>
+        <p id="storageTest" class="info">storage.js: Проверка...</p>
+        <p id="gameTest" class="info">game.js: Проверка...</p>
+        <p id="uiTest" class="info">ui.js: Проверка...</p>
+        <p id="mainTest" class="info">main.js: Проверка...</p>
+    </div>
+    
+    <div class="test-block">
+        <h2>3. Проверка переменных</h2>
+        <pre id="varsTest"></pre>
+    </div>
+    
+    <div class="test-block">
+        <h2>4. Структура проекта должна быть:</h2>
+        <pre>
+neo-klin-project/
+├── index.html
+├── test.html (этот файл)
+├── css/
+│   └── style.css
+└── js/
+    ├── config.js
+    ├── storage.js
+    ├── game.js
+    ├── ui.js
+    └── main.js
+        </pre>
+    </div>
+    
+    <div class="test-block">
+        <h2>5. Кнопка перехода</h2>
+        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+            ➡️ Перейти к игре
+        </button>
+    </div>
+
+    <script>
+        // Проверка CSS
+        setTimeout(() => {
+            const testEl = document.createElement('div');
+            testEl.style.cssText = '--test-var: 1';
+            const hasVars = testEl.style.cssText !== '';
+            document.getElementById('cssTest').innerHTML = hasVars ? 
+                '<span class="success">✅ CSS поддерживается</span>' : 
+                '<span class="error">❌ CSS не поддерживается</span>';
+        }, 100);
+        
+        // Проверка JS файлов
+        setTimeout(() => {
+            // config.js
+            if (typeof CONFIG !== 'undefined') {
+                document.getElementById('configTest').innerHTML = '<span class="success">✅ config.js загружен</span>';
+            } else {
+                document.getElementById('configTest').innerHTML = '<span class="error">❌ config.js НЕ загружен</span>';
+            }
+            
+            // storage.js
+            if (typeof storage !== 'undefined') {
+                document.getElementById('storageTest').innerHTML = '<span class="success">✅ storage.js загружен</span>';
+            } else {
+                document.getElementById('storageTest').innerHTML = '<span class="error">❌ storage.js НЕ загружен</span>';
+            }
+            
+            // game.js
+            if (typeof game !== 'undefined') {
+                document.getElementById('gameTest').innerHTML = '<span class="success">✅ game.js загружен</span>';
+            } else {
+                document.getElementById('gameTest').innerHTML = '<span class="error">❌ game.js НЕ загружен</span>';
+            }
+            
+            // ui.js
+            if (typeof ui !== 'undefined') {
+                document.getElementById('uiTest').innerHTML = '<span class="success">✅ ui.js загружен</span>';
+            } else {
+                document.getElementById('uiTest').innerHTML = '<span class="error">❌ ui.js НЕ загружен</span>';
+            }
+            
+            // main.js
+            if (typeof formatNumber !== 'undefined') {
+                document.getElementById('mainTest').innerHTML = '<span class="success">✅ main.js загружен</span>';
+            } else {
+                document.getElementById('mainTest').innerHTML = '<span class="error">❌ main.js НЕ загружен</span>';
+            }
+            
+            // Показываем доступные переменные
+            let varsInfo = '';
+            varsInfo += 'CONFIG: ' + (typeof CONFIG !== 'undefined' ? '✅' : '❌') + '\n';
+            varsInfo += 'storage: ' + (typeof storage !== 'undefined' ? '✅' : '❌') + '\n';
+            varsInfo += 'game: ' + (typeof game !== 'undefined' ? '✅' : '❌') + '\n';
+            varsInfo += 'ui: ' + (typeof ui !== 'undefined' ? '✅' : '❌') + '\n';
+            varsInfo += 'formatNumber: ' + (typeof formatNumber !== 'undefined' ? '✅' : '❌') + '\n';
+            
+            if (typeof CONFIG !== 'undefined') {
+                varsInfo += '\nCONFIG.INITIAL_ENERGY: ' + CONFIG.INITIAL_ENERGY;
+            }
+            if (typeof storage !== 'undefined') {
+                varsInfo += '\nБаланс из storage: ' + storage.get('balance');
+            }
+            
+            document.getElementById('varsTest').textContent = varsInfo;
+        }, 500);
+    </script>
+    
+    <!-- Подключаем те же файлы что и в index.html -->
+    <script src="config.js"></script>
+    <script src="storage.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
